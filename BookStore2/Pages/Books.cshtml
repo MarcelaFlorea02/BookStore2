@@ -1,0 +1,35 @@
+﻿@page
+@model BookStore2.Pages.BooksModel
+@{
+    ViewData["Title"] = "Books";
+    <div>
+        <h1>Books</h1>
+        Bellow you will see all the books in the Book Store: <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>BookId</th>
+                    <th>Title</th>
+                    <th>ISBN</th>
+                    <th>Publisher</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model.books)
+                {
+                    <tr>
+                        <td>@book.BookId</td>
+                        <td>@book.Title</td>
+                        <td>@book.ISBN</td>
+                        <td>@book.PublisherName</td>
+                        <td>@book.AuthorName</td>
+                        <td>@book.CategoryName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
