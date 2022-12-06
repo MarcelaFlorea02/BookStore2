@@ -1,0 +1,42 @@
+﻿@page
+@model BookStore2.Pages.EditBookModel
+@{
+    ViewData["Title"] = "Edit Book";
+}
+<div>
+    <h1>Edit Book</h1>
+    <form name="EditBook" id="bookForm" method="post">
+        Title:
+        <br />
+        <input name="bookTitle" type="text"
+               class="form-control input-lg" value="@Model.book.Title"
+               autofocus required />
+
+        <br />
+        ISBN:
+        <br />
+        <input name="bookISBN" type="text" class="form-control input-lg"
+               value="@Model.book.ISBN" required />
+        <br />
+
+        Publisher:
+        <br />
+        <input name="bookPublisher" type="text" class="form-control input-lg"
+               value="@Model.book.PublisherName" required />
+        <br />
+
+        Author:
+        <br />
+        <input name="bookAuthor" type="text" class="form-control input-lg"
+               value="@Model.book.AuthorName" required />
+        <br />
+        Category:
+        <br />
+        <input name="bookCategory" type="text" class="form-control input-lg"
+               value="@Model.book.CategoryName" required />
+        <br />
+
+        <input id="saveButton" type="submit" value="Save" class="btn btn-info" />
+
+    </form>
+</div>

@@ -48,7 +48,7 @@ namespace BookStore2.Models
             Book book = new Book();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "Select BookId, Title, ISBN, PublisherName, AuthorName, CateogoryName from GetBookData where BookId = " + bookId;
+                string query = "Select BookId, Title, ISBN, PublisherName, AuthorName, CategoryName from GetBookData where BookId = " + bookId;
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader sqlDataReader = command.ExecuteReader();
@@ -61,7 +61,7 @@ namespace BookStore2.Models
                         book.ISBN = sqlDataReader["ISBN"].ToString();
                         book.PublisherName = sqlDataReader["PublisherName"].ToString();
                         book.AuthorName = sqlDataReader["AuthorName"].ToString();
-                        book.CategoryName = sqlDataReader["Category"].ToString();
+                        book.CategoryName = sqlDataReader["CategoryName"].ToString();
                     }
                 }
             }

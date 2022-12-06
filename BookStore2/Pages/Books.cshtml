@@ -14,6 +14,7 @@
                     <th>Publisher</th>
                     <th>Author</th>
                     <th>Category</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,13 +22,15 @@
                 {
                     <tr>
                         <td>@book.BookId</td>
-                        <td>@book.Title</td>
+                        <td><a href="./EditBook?bookId=@book.BookId">@book.Title</a></td>
                         <td>@book.ISBN</td>
                         <td>@book.PublisherName</td>
                         <td>@book.AuthorName</td>
                         <td>@book.CategoryName</td>
+                        <td><a href="./DeleteBook?bookId=@book.BookId" class="btn btn-danger" role="button">Delete Book</a></td>
                     </tr>
                 }
+
             </tbody>
         </table>
         <a href="./NewBook" class="btn btn-info" role="button">New Book</a>
