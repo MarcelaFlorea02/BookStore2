@@ -1,5 +1,5 @@
-using BookStore2.Models;
-using Microsoft.AspNetCore.Mvc;
+using Domain.Models;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
@@ -8,13 +8,12 @@ namespace BookStore2.Pages
     public class NewBookModel : PageModel
     {
         private readonly IConfiguration _configuration;
+        private readonly IBookRepository _bookRepository;
 
-        public NewBookModel(IConfiguration configuration)
+        public NewBookModel(IConfiguration configuration, IBookRepository bookRepository)
         {
             _configuration = configuration;
-        }
-        public void OnGet()
-        {
+            _bookRepository = bookRepository;
         }
 
         public void OnPost()
@@ -27,10 +26,9 @@ namespace BookStore2.Pages
             book.CategoryName = Request.Form["bookCategory"];
 
             var connectionString = _configuration.GetConnectionString("ConnectionString");
-            book.CreateBook(connectionString, book);
+            _bookRepository.CreateBook(connectionString, book);
 
-            Response.Redirect("./Books"); 
-
+            Response.Redirect("./Books");
         }
     }
 }

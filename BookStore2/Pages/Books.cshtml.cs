@@ -1,7 +1,8 @@
-using BookStore2.Models;
-using Microsoft.AspNetCore.Mvc;
+using Domain.Models;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace BookStore2.Pages
@@ -10,11 +11,16 @@ namespace BookStore2.Pages
     {
         public List<Book> books = new List<Book>();
         private readonly IConfiguration _configuration;
+        private readonly IBookRepository _bookRepository;
 
+        private readonly ILogger<BooksModel> _logger;
         //dependency injection 
-        public BooksModel(IConfiguration configuration)
+        public BooksModel(IConfiguration configuration, ILogger<BooksModel> logger,
+            IBookRepository bookRepository)
         {
             _configuration = configuration;
+            _logger = logger;
+            _bookRepository = bookRepository;
         }
 
         //gets called when the page loads
@@ -26,10 +32,9 @@ namespace BookStore2.Pages
         private List<Book> GetBookList()
         {
             var connectionString = _configuration.GetConnectionString("ConnectionString");
-            var book = new Book();
-            var books = book.GetBooks(connectionString);
+            var books = _bookRepository.GetBooks(connectionString);
+            _logger.LogInformation("Got all books");
             return books;
-
         }
     }
 }

@@ -1,19 +1,13 @@
-﻿using System;
+﻿using Domain.Models;
+using Infrastructure.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace BookStore2.Models
+namespace Infrastructure
 {
-    public class Book
+    public class BookRepository : IBookRepository
     {
-        public int BookId { get; set; }
-        public string Title { get; set; }
-        public string ISBN { get; set; }
-        public string PublisherName { get; set; }
-        public string CategoryName { get; set; }
-        public string AuthorName { get; set; }
-
-        //Get all books 
         public List<Book> GetBooks(string connectionString)
         {
             List<Book> books = new List<Book>();
@@ -114,7 +108,7 @@ namespace BookStore2.Models
             }
             catch (Exception ex)
             {
-                //log exception
+
             }
         }
 
@@ -137,6 +131,5 @@ namespace BookStore2.Models
                 //log exception
             }
         }
-
     }
 }
